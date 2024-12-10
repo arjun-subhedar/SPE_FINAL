@@ -1,14 +1,14 @@
 pipeline {
     environment {
-        DOCKERHUB_CRED = credentials("Docker_Credentials_shouryap1")
-        MONGO_URI = credentials("mongo-uri")
-        SECRET_KEY = credentials("cloud_secret_key")
-        CLOUD_NAME = credentials("cloud_name")
-        API_KEY = credentials("cloud_api_key")
-        API_SECRET = credentials("cloud_api_secret")
+        DOCKERHUB_CRED = credentials("docker_credentials")
+        // MONGO_URI = credentials("mongo-uri")
+        // SECRET_KEY = credentials("cloud_secret_key")
+        // CLOUD_NAME = credentials("cloud_name")
+        // API_KEY = credentials("cloud_api_key")
+        // API_SECRET = credentials("cloud_api_secret")
         PORT = "8000" 
-        MINIKUBE_HOME = '/home/jenkins/.minikube'
-        VAULT_PASS = credentials("ansible_vault_pass")
+        // MINIKUBE_HOME = '/home/jenkins/.minikube'
+        // VAULT_PASS = credentials("ansible_vault_pass")
     }
     agent any
     tools {nodejs "NODEJS"} 
@@ -16,8 +16,8 @@ pipeline {
         stage("Stage 1: Git Clone") {
             steps {
                 sh '''
-                [ -d Talent_Bridge_K8s ] && rm -rf Talent_Bridge_K8s
-                git clone https://github.com/shouryap1/Talent_Bridge_K8s.git
+                [ -d SPE_FINAL ] && rm -rf SPE_FINAL
+                git clone https://github.com/arjun-subhedar/SPE_FINAL
                 '''
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         stage("Stage 3: Build frontend") {
             steps {
                 sh '''
-                cd Talent_Bridge_K8s/frontend
+                cd SPE_FINAL/frontend
                 npm install
                 npm run build
                 '''
@@ -53,15 +53,15 @@ pipeline {
         stage("Stage 4.1: Creating Docker Image for frontend") {
             steps {
                 sh '''
-                cd Talent_Bridge_K8s/frontend
-                docker build -t shouryap1/frontend:latest .
+                cd SPE_FINAL/client
+                docker build -t pranav243/spe_main_project_client:latest .
                 '''
             }
         }
         stage("Stage 4.2: Scan Docker Image for frontend") {
             steps {
                 sh '''
-                trivy image shouryap1/frontend:latest
+                trivy image pranav243/spe_main_project_client:latest
                 '''
             }
         }
@@ -69,7 +69,7 @@ pipeline {
             steps {
                 sh '''
                 docker login -u ${DOCKERHUB_CRED_USR} -p ${DOCKERHUB_CRED_PSW}
-                docker push shouryap1/frontend:latest
+                docker push pranav243/spe_main_project_client:latest
                 '''
             }
         }
@@ -78,15 +78,15 @@ pipeline {
         stage("Stage 5.1: Creating Docker Image for backend") {
             steps {
                 sh '''
-                cd Talent_Bridge_K8s/backend
-                docker build -t shouryap1/backend:latest .
+                cd SPE_FINAL/server
+                docker build -t pranav243/spe_main_project_server:latest .
                 '''
             }
         }
         stage("Stage 5.2: Scan Docker Image for backend") {
             steps {
                 sh '''
-                trivy image shouryap1/backend:latest
+                trivy image pranav243/spe_main_project_server:latest
                 '''
             }
         }
@@ -96,7 +96,7 @@ pipeline {
             steps {
                 sh '''
                 docker login -u ${DOCKERHUB_CRED_USR} -p ${DOCKERHUB_CRED_PSW}
-                docker push shouryap1/backend:latest
+                docker push pranav243/spe_main_project_server:latest
                 '''
             }
         }
@@ -104,7 +104,7 @@ pipeline {
         stage("Stage 8: Ansible"){
             steps {
                 sh '''
-                cd Talent_Bridge_K8s
+                cd SPE_FINAL
                 ansible-playbook -i inventory-k8 playbook-k8.yaml
                 '''
             }

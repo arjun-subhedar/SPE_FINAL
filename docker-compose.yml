@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     
   server:
-    image: arjunsubhedar/spe_main_project_server
+    image: pranav243/spe_main_project_server
     container_name: server
     ports:
       - '3001:3001'
@@ -18,9 +18,9 @@ services:
     networks:
       - app-network
     volumes:
-      - /home/arjun/Desktop/SPE-Final-Project-main/app.log
+      - /home/pranav/Desktop/SPE_FINAL/app.log
   client:
-    image: arjunsubhedar/spe_main_project_client
+    image: pranav243/spe_main_project_client
     container_name: client
     ports:
       - '3000:3000'
@@ -45,8 +45,8 @@ services:
     image: docker.elastic.co/logstash/logstash:7.17.10
     container_name: logstash
     volumes:
-      - /home/arjun/Desktop/SPE-Final-Project-main/app.log:/app/app.log
-      - /home/arjun/Desktop/SPE-Final-Project-main/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - /home/pranav/Desktop/SPE_FINAL/app.log:/app/app.log
+      - /home/pranav/Desktop/SPE_FINAL/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
     environment:
       - xpack.monitoring.enabled=false
     networks:
