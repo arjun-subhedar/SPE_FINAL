@@ -23,7 +23,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `http://192.168.59.100:30007/users/${_id}/${friendId}`,
+      `http://192.168.49.2:30007/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {

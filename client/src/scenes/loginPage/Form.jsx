@@ -64,7 +64,7 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http://192.168.59.100:30007/auth/register",
+      "http://192.168.49.2:30007/auth/register",
       {
         method: "POST",
         body: formData,

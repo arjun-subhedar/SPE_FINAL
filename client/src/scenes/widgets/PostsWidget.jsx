@@ -9,7 +9,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch("http://192.168.59.100:30007/posts", {
+    const response = await fetch("http://192.168.49.2:30007/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
