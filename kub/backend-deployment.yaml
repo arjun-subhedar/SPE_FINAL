@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: my-node-backend
-          image: arjunsubhedar/spe_main_project_server:latest
+          image: pranav243/spe_main_project_server:latest
           ports:
             - containerPort: 3001
           resources:

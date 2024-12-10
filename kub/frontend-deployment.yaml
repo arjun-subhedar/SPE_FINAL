@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: my-react-app
-          image: arjunsubhedar/spe_main_project_client:latest
+          image: pranav243/spe_main_project_client:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
