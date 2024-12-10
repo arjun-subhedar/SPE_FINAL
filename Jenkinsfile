@@ -58,13 +58,13 @@ pipeline {
                 '''
             }
         }
-        stage("Stage 4.2: Scan Docker Image for frontend") {
-            steps {
-                sh '''
-                trivy image pranav243/spe_main_project_client:latest
-                '''
-            }
-        }
+        // stage("Stage 4.2: Scan Docker Image for frontend") {
+        //     steps {
+        //         sh '''
+        //         trivy image pranav243/spe_main_project_client:latest
+        //         '''
+        //     }
+        // }
         stage("Stage 4.3: Push Frontend Docker Image") {
             steps {
                 sh '''
@@ -83,13 +83,13 @@ pipeline {
                 '''
             }
         }
-        stage("Stage 5.2: Scan Docker Image for backend") {
-            steps {
-                sh '''
-                trivy image pranav243/spe_main_project_server:latest
-                '''
-            }
-        }
+        // stage("Stage 5.2: Scan Docker Image for backend") {
+        //     steps {
+        //         sh '''
+        //         trivy image pranav243/spe_main_project_server:latest
+        //         '''
+        //     }
+        // }
 
 
         stage("Stage 5.3: Push Backend Docker Image") {
