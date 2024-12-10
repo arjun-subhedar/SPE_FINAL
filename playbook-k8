@@ -1,0 +1,15 @@
+- name: Deploying with Kubernetes
+  hosts: all
+  tasks:
+    - name: Show ansible_user
+      debug:
+        msg: "The ansible_user is {{ ansible_user }}"
+
+    - name: Clone the repository
+      git:
+        repo: 
+        dest: /tmp/Talent_Bridge_K8s
+      
+
+    - name: Apply Kubernetes manifests
+      command: kubectl apply -f /tmp/Talent_Bridge_K8s/kub

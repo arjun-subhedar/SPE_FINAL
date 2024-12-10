@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-node-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-node-backend
+  template:
+    metadata:
+      labels:
+        app: my-node-backend
+    spec:
+      containers:
+        - name: my-node-backend
+          image: arjunsubhedar/spe_main_project_server:latest
+          ports:
+            - containerPort: 3001
+          resources:
+            requests:
+              memory: "256Mi" # Request 256 MB of memory
+            limits:
+              memory: "512Mi" # Limit to 512 MB of memory
