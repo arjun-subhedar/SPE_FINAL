@@ -12,4 +12,4 @@
       
 
     - name: Apply Kubernetes manifests
-      command: kubectl apply -f /tmp/SPE_FINAL/kub
+      command: kubectl apply -f /tmp/SPE_FINAL/kub --insecure-skip-tls-verify
