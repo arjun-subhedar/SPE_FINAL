@@ -11,7 +11,7 @@ pipeline {
         // VAULT_PASS = credentials("ansible_vault_pass")
     }
     agent any
-    tools {NodeJs "NODEJS"} 
+    tools {nodejs "NODEJS"} 
     stages {
         stage("Stage 1: Git Clone") {
             steps {
