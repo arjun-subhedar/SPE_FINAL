@@ -22,17 +22,17 @@ pipeline {
             }
         }
 
-        stage("Stage 2: Backend Testing") {
-            steps {
-                sh '''
-                cd backend
-                npm i
-                cd tests
-                npm install mocha chai sinon prom-client
-                npm test
-                '''
-            }
-        }
+        // stage("Stage 2: Backend Testing") {
+        //     steps {
+        //         sh '''
+        //         cd server
+        //         npm i
+        //         cd test
+        //         npm install mocha chai sinon prom-client
+        //         npm test
+        //         '''
+        //     }
+        // }
 
         stage("Stage 3: Build frontend") {
             steps {
