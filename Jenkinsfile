@@ -37,7 +37,7 @@ pipeline {
         stage("Stage 3: Build frontend") {
             steps {
                 sh '''
-                cd SPE_FINAL/frontend
+                cd SPE_FINAL/client
                 npm install
                 npm run build
                 '''
